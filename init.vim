@@ -9,4 +9,5 @@ source ~/.config/nvim/modules/modular_config.vim
 call Load("core")
 call Load("dashboard")
 call Load("appearance")
-call plug#end()
+call Load("files")
+call Load("programming")
