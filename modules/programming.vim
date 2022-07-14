@@ -1,5 +1,6 @@
 Plug 'jremmen/vim-ripgrep'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 
