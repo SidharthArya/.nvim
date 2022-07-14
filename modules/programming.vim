@@ -1,6 +1,7 @@
 Plug 'jremmen/vim-ripgrep'
-Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/vim-lsp'
 Plug 'honza/vim-snippets'
+Plug 'preservim/nerdcommenter'
 call plug#end()
 
 
@@ -32,7 +33,6 @@ function! s:on_lsp_buffer_enabled() abort
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    
     " refer to doc to add more commands
 endfunction
 
