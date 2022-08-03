@@ -5,8 +5,9 @@ Plug 'w0rp/ale'
 " Plug 'Shougo/deoplete.nvim'
 call plug#end()
 
-nnoremap <M-/> :Commentary<CR>
+" nnoremap <M-/> :Commentary<CR>
 nnoremap <M-;> :Commentary<CR>
+nnoremap <Leader>/ :Commentary<CR>
 
 let g:ale_completion_enabled = 1
 let b:ale_fixers = {'javascript': ['prettier', 'eslint'], 'go': ['gofmt', 'govet']}
