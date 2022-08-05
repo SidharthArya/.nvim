@@ -4,3 +4,4 @@ function Load(module_name)
 	exec "source " . l:module_path
 	" echo "[Module]: " . a:module_name
 endfunction
+nnoremap <Leader>Pi :PlugInstall<CR>

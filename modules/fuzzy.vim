@@ -1,8 +1,11 @@
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'tom-anders/telescope-vim-bookmarks.nvim'
+Plug 'nvim-telescope/telescope-project.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'sudormrfbin/cheatsheet.nvim'
 call plug#end()
 
-
+lua require'telescope'.load_extension('project')
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope fd<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
