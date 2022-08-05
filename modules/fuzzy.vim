@@ -39,3 +39,4 @@ nmap <Leader>gb :Telescope git_branches<CR>
 
 " Reloads
 nmap <Leader>rr :source ~/.config/nvim/init.vim<CR>
+nmap <Leader>rR :source %<CR>
