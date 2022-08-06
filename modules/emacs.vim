@@ -29,5 +29,7 @@ EOF
 
 NeorgStart
 
-nnoremap <Leader>nn :Telescope neorg 
+" nnoremap <Leader>nn :Telescope neorg 
+"
+nnoremap <Leader>oi :Telescope neorg insert_link<CR>
 

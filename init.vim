@@ -5,6 +5,7 @@ if !filereadable(expand("~/.local/share/nvim/site/autoload/plug.vim"))
 endif
 
 source ~/.config/nvim/modules/modular_config.vim
+
 " Loading modules
 call Load("core")
 call Load("dashboard")
@@ -15,7 +16,7 @@ call Load("programming")
 call Load("bookmark")
 call Load("vc")
 call Load("vscode")
-call Load("notes")
+" call Load("notes")
 call Load("completion")
 call Load("space")
 call Load("finance")
