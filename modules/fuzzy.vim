@@ -2,7 +2,8 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'tom-anders/telescope-vim-bookmarks.nvim'
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-telescope/telescope-fzf-native.nvim'
+" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'sudormrfbin/cheatsheet.nvim'
 call plug#end()
 
@@ -56,5 +57,5 @@ nmap <Leader>; :Telescope commands<CR>
 nmap <Leader>rr :source ~/.config/nvim/init.vim<CR>
 nmap <Leader>rR :source %<CR>
 
-nnoremap <Leader>ff :lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy({}))<cr>
+" nnoremap <Leader>ff :lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy({}))<cr>
 
