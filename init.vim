@@ -1,6 +1,6 @@
 " Ensuring plugin manager is installed
 if !filereadable(expand("~/.local/share/nvim/site/autoload/plug.vim"))
-	echom "Installing Packer"
+	echom "Installing Vim Plug..."
 	call system(expand("sh -c 'curl -fLo ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'"))
 	
 endif

@@ -1,178 +1,37 @@
-Plug 'oberblastmeister/neuron.nvim'
-Plug 'renerocksai/telekasten.nvim'
+Plug 'mickael-menu/zk-nvim'
 call plug#end()
 
 lua << END
-local home = vim.fn.expand("~/Documents/Org/Zettel")
--- NOTE for Windows users:
--- - don't use Windows
--- - try WSL2 on Windows and pretend you're on Linux
--- - if you **must** use Windows, use "/Users/myname/zettelkasten" instead of "~/zettelkasten"
--- - NEVER use "C:\Users\myname" style paths
--- - Using `vim.fn.expand("~/zettelkasten")` should work now but mileage will vary with anything outside of finding and opening files
-require('telekasten').setup({
-    home         = home,
-
-    -- if true, telekasten will be enabled when opening a note within the configured home
-    take_over_my_home = true,
-
-    -- auto-set telekasten filetype: if false, the telekasten filetype will not be used
-    --                               and thus the telekasten syntax will not be loaded either
-    auto_set_filetype = true,
-
-    -- dir names for special notes (absolute path or subdir name)
-    dailies      = home .. '/' .. 'daily',
-    weeklies     = home .. '/' .. 'weekly',
-    templates    = home .. '/' .. 'templates',
-
-    -- image (sub)dir for pasting
-    -- dir name (absolute path or subdir name)
-    -- or nil if pasted images shouldn't go into a special subdir
-    image_subdir = "img",
-
-    -- markdown file extension
-    extension    = ".md",
-
-    -- Generate note filenames. One of:
-    -- "title" (default) - Use title if supplied, uuid otherwise
-    -- "uuid" - Use uuid
-    -- "uuid-title" - Prefix title by uuid
-    -- "title-uuid" - Suffix title with uuid
-    new_note_filename = "title",
-    -- file uuid type ("rand" or input for os.date()")
-    uuid_type = "%Y%m%d%H%M",
-    -- UUID separator
-    uuid_sep = "-",
-
-    -- following a link to a non-existing note will create it
-    follow_creates_nonexisting = true,
-    dailies_create_nonexisting = true,
-    weeklies_create_nonexisting = true,
-
-    -- skip telescope prompt for goto_today and goto_thisweek
-    journal_auto_open = false,
-
-    -- template for new notes (new_note, follow_link)
-    -- set to `nil` or do not specify if you do not want a template
-    template_new_note = home .. '/' .. 'templates/new_note.md',
-
-    -- template for newly created daily notes (goto_today)
-    -- set to `nil` or do not specify if you do not want a template
-    template_new_daily = home .. '/' .. 'templates/daily.md',
-
-    -- template for newly created weekly notes (goto_thisweek)
-    -- set to `nil` or do not specify if you do not want a template
-    template_new_weekly= home .. '/' .. 'templates/weekly.md',
-
-    -- image link style
-    -- wiki:     ![[image name]]
-    -- markdown: ![](image_subdir/xxxxx.png)
-    image_link_style = "markdown",
-
-    -- default sort option: 'filename', 'modified'
-    sort = "filename",
-
-    -- integrate with calendar-vim
-    plug_into_calendar = true,
-    calendar_opts = {
-        -- calendar week display mode: 1 .. 'WK01', 2 .. 'WK 1', 3 .. 'KW01', 4 .. 'KW 1', 5 .. '1'
-        weeknm = 4,
-        -- use monday as first day of week: 1 .. true, 0 .. false
-        calendar_monday = 1,
-        -- calendar mark: where to put mark for marked days: 'left', 'right', 'left-fit'
-        calendar_mark = 'left-fit',
+local home = vim.fn.expand("~/Documents/Zettel")
+require("zk").setup({
+  picker = "telescope",
+  notebook_path = home .. "/work",
+  lsp = {
+    config = {
+      cmd = { "zk", "lsp" },
+      name = "zk",
     },
-
-    -- telescope actions behavior
-    close_after_yanking = false,
-    insert_after_inserting = true,
-
-    -- tag notation: '#tag', ':tag:', 'yaml-bare'
-    tag_notation = "#tag",
-
-    -- command palette theme: dropdown (window) or ivy (bottom panel)
-    command_palette_theme = "ivy",
-
-    -- tag list theme:
-    -- get_cursor: small tag list at cursor; ivy and dropdown like above
-    show_tags_theme = "ivy",
-
-    -- when linking to a note in subdir/, create a [[subdir/title]] link
-    -- instead of a [[title only]] link
-    subdirs_in_links = true,
-
-    -- template_handling
-    -- What to do when creating a new note via `new_note()` or `follow_link()`
-    -- to a non-existing note
-    -- - prefer_new_note: use `new_note` template
-    -- - smart: if day or week is detected in title, use daily / weekly templates (default)
-    -- - always_ask: always ask before creating a note
-    template_handling = "smart",
-
-    -- path handling:
-    --   this applies to:
-    --     - new_note()
-    --     - new_templated_note()
-    --     - follow_link() to non-existing note
-    --
-    --   it does NOT apply to:
-    --     - goto_today()
-    --     - goto_thisweek()
-    --
-    --   Valid options:
-    --     - smart: put daily-looking notes in daily, weekly-looking ones in weekly,
-    --              all other ones in home, except for notes/with/subdirs/in/title.
-    --              (default)
-    --
-    --     - prefer_home: put all notes in home except for goto_today(), goto_thisweek()
-    --                    except for notes with subdirs/in/title.
-    --
-    --     - same_as_current: put all new notes in the dir of the current note if
-    --                        present or else in home
-    --                        except for notes/with/subdirs/in/title.
-    new_note_location = "smart",
-
-    -- should all links be updated when a file is renamed
-    rename_update_links = true,
+    auto_attach = {
+      enabled = true,
+      filetypes = { "markdown" },
+    },
+  },
 })
+require("telescope").load_extension("zk")
+local opts = { noremap=true, silent=false}
+
+-- Create a new note after asking for its title.
+vim.api.nvim_set_keymap("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", opts)
+
+-- Open notes.
+vim.api.nvim_set_keymap("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", opts)
+-- Open notes associated with the selected tags.
+vim.api.nvim_set_keymap("n", "<leader>zt", "<Cmd>ZkTags<CR>", opts)
+
+-- Search for the notes matching a given query.
+vim.api.nvim_set_keymap("n", "<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>", opts)
+-- Search for the notes matching the current visual selection.
+vim.api.nvim_set_keymap("v", "<leader>zf", ":'<,'>ZkMatch<CR>", opts)
 END
 
-lua << EOF
--- these are all the default values
-require'neuron'.setup {
-    virtual_titles = true,
-    mappings = true,
-    run = nil, -- function to run when in neuron dir
-    neuron_dir = "~/Documents/Notes", -- the directory of all of your notes, expanded by default (currently supports only one directory for notes, find a way to detect neuron.dhall to use any directory)
-    leader = "gz", -- the leader key to for all mappings, remember with 'go zettel'
-}
-EOF
-
- " click enter on [[my_link]] or [[[my_link]]] to enter it
-nnoremap <buffer> <CR> <cmd>lua require'neuron'.enter_link()<CR>
-
-" create a new note
-nnoremap <buffer> gzn <cmd>lua require'neuron/cmd'.new_edit(require'neuron'.config.neuron_dir)<CR>
-
-" find your notes, click enter to create the note if there are not notes that match
-nnoremap <buffer> gzz <cmd>lua require'neuron/telescope'.find_zettels()<CR>
-" insert the id of the note that is found
-nnoremap <buffer> gzZ <cmd>lua require'neuron/telescope'.find_zettels {insert = true}<CR>
-
-" find the backlinks of the current note all the note that link this note
-nnoremap <buffer> gzb <cmd>lua require'neuron/telescope'.find_backlinks()<CR>
-" same as above but insert the found id
-nnoremap <buffer> gzB <cmd>lua require'neuron/telescope'.find_backlinks {insert = true}<CR>
-
-" find all tags and insert
-nnoremap <buffer> gzt <cmd>lua require'neuron/telescope'.find_tags()<CR>
-
-" start the neuron server and render markdown, auto reload on save
-nnoremap <buffer> gzs <cmd>lua require'neuron'.rib {address = "127.0.0.1:8200", verbose = true}<CR>
-
-" go to next [[my_link]] or [[[my_link]]]
-nnoremap <buffer> gz] <cmd>lua require'neuron'.goto_next_extmark()<CR>
-" go to previous
-nnoremap <buffer> gz[ <cmd>lua require'neuron'.goto_prev_extmark()<CR>]]
-
-nnoremap <Leader>nn <cmd>lua require'neuron/telescope'.find_zettels()<CR>
+let $ZK_NOTEBOOK_DIR="/home/arya/Documents/Zettel/work"
