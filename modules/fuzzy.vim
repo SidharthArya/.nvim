@@ -109,6 +109,8 @@ nmap <Leader>rr :source ~/.config/nvim/init.vim<CR>
 nmap <Leader>rR :source %<CR>
 
 " nnoremap <Leader>ff :lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy({}))<cr>
+"
+nnoremap <Leader>bg :lua require('telescope.builtin').live_grep({grep_open_files=true})<CR>
 
 " Projects
 nnoremap <Leader>mm :Telescope project<CR>
