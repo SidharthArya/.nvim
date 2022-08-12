@@ -38,6 +38,7 @@ END
 
 nnoremap <leader>now :let $ZK_NOTEBOOK_DIR="/home/arya/Documents/Zettel/work"<CR>
 nnoremap <leader>nop :let $ZK_NOTEBOOK_DIR="/home/arya/Documents/Zettel/personal"<CR>
+nnoremap <leader>noP :let $ZK_NOTEBOOK_DIR="/home/arya/Documents/Zettel/public"<CR>
 nnoremap <leader>nod :let $ZK_NOTEBOOK_DIR="/home/arya/Documents/Zettel/braindump"<CR>
 nnoremap <leader>nob :let $ZK_NOTEBOOK_DIR="/home/arya/Documents/Zettel/blog"<CR>
 " nnoremap <leader>nod :let $ZK_NOTEBOOK_DIR="/home/arya/Documents/Zettel/daily"<CR>
