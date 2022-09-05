@@ -1,4 +1,5 @@
 Plug 'jremmen/vim-ripgrep'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 
@@ -17,3 +18,9 @@ nnoremap <Leader>/ :Commentary<CR>
 " let g:deoplete#enable_at_startup = 1
 "
 "
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
