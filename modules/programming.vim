@@ -1,4 +1,3 @@
-Plug 'jremmen/vim-ripgrep'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
@@ -24,3 +23,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+nnoremap <Space>Fj :execute '%!python -m json.tool' <bar> set filetype=json<CR>
+nnoremap <Space>Fp :execute '%!black - -q' <bar> set filetype=python<CR>

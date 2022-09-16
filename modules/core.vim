@@ -4,7 +4,7 @@ call plug#end()
 
 syntax on
 set mouse=a
-set autochdir
+" set autochdir
 " nnoremap <SPACE> <Nop>
 " let mapleader=" "
 " let mapleader="\<Space>"
@@ -18,3 +18,5 @@ filetype plugin on
 nnoremap <Space>nr :NR<CR>
 nnoremap <Space>rr :source %<CR>
 nnoremap <Space>rR :source ~/.config/nvim/init.vim<CR>
+
+nnoremap <Space>fn :new<CR>
