@@ -1,2 +1,2 @@
-Plug 'kien/ctrlp.vim'
-call plug#end()
+" Plug 'kien/ctrlp.vim'
+" call plug#end()

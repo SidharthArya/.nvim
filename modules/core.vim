@@ -20,3 +20,7 @@ nnoremap <Space>rr :source %<CR>
 nnoremap <Space>rR :source ~/.config/nvim/init.vim<CR>
 
 nnoremap <Space>fn :new<CR>
+
+nnoremap <Space>c. :cd %:h<CR> :cd `git rev-parse --show-toplevel` <CR>
+
+set shiftwidth=2
