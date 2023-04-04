@@ -17,3 +17,10 @@ endsnippet
 snippet print "Print"
 fmt.Println($1)
 endsnippet
+
+
+snippet post "Post Request"
+app.Post("/$1", func (c*fiber.Ctx) error {
+  $2
+})
+endsnippet
