@@ -1,7 +1,8 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.formatOnSaveFiletypes": [
-    "go"
+    "go",
+    "javascript"
   ],
   "coc.preferences.formatOnSave": true,
   "coc.source.go.gofmt": "goimports",
