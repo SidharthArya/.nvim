@@ -2,9 +2,11 @@
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.formatOnSaveFiletypes": [
     "go",
-    "javascript"
+    "javascript",
+    "python"
   ],
   "coc.preferences.formatOnSave": true,
   "coc.source.go.gofmt": "goimports",
-  "coc.source.go.gofmtOptions": ["-w -tabs=false"]
+  "coc.source.go.gofmtOptions": ["-w -tabs=false"],
+  "python.formatting.provider": "autopep8"
 }
