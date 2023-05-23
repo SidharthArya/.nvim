@@ -17,13 +17,17 @@ call Load("programming")
 call Load("bookmark")
 call Load("vc")
 call Load("env")
-call Load("vscode")
+call Load("lsp")
+" call Load("vscode")
 call Load("notes")
 call Load("completion")
 call Load("space")
 call Load("finance")
 call Load("workspaces")
 " call Load("emacs")
+"
 call Load("tasks")
 call Load("navigation")
 call Load("wakatime")
+
+
