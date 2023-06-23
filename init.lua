@@ -60,18 +60,24 @@ vim.keymap.set('n', '<Space>ff', builtin.find_files, {})
 vim.keymap.set('n', '<Space>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<Space>fb', builtin.buffers, {})
 vim.keymap.set('n', '<Space>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<Space>rr', '<cmd>source ~/.config/nvim/init.lua<CR>', {})
 vim.cmd.colorscheme('tokyonight')
-
+vim.keymap.set('n', '<Space>lD', vim.lsp.buf.hover, {buffer = bufnr})
+vim.keymap.set('n', '<Space>lr', vim.lsp.buf.references, {buffer = bufnr})
+vim.keymap.set('n', '<Space>ld', vim.lsp.buf.implementation, {buffer = bufnr})
+vim.keymap.set('n', '<Space>ll', vim.lsp.buf.code_action, {buffer = bufnr})
+vim.keymap.set('n', '<Space>lf', vim.lsp.buf.format, {buffer = bufnr})
+vim.keymap.set('n', '<Space>lD', vim.lsp.buf.hover, {buffer = bufnr})
 
 -- LSP
 --
 vim.lsp.start({
   name = 'python-lsp',
-  cmd = {'pyright'},
+  cmd = {'pyright-langserver', "--stdio"},
   root_dir = vim.fs.dirname(vim.fs.find({'setup.py', 'pyproject.toml', 'requirements.txt'}, { upward = true })[1]),
 })
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
-    vim.keymap.set('n', 'D', vim.lsp.buf.hover, { buffer = args.buf })
+    vim.keymap.set('n', '<Space>lD', vim.lsp.buf.hover, { buffer = args.buf })
   end,
 })
