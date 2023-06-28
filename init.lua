@@ -59,7 +59,9 @@ lazy.setup({
 	{'numToStr/Comment.nvim'},
 	{"ahmedkhalf/project.nvim"},
 	{'nvim-treesitter/nvim-treesitter'},
-	{'voldikss/vim-floaterm'}
+	{'voldikss/vim-floaterm'},
+	{'Mofiqul/vscode.nvim'},
+	{'nvim-tree/nvim-tree.lua'}
 })
 
 require('lualine').setup{
@@ -258,7 +260,7 @@ vim.keymap.set('n', '<Space>bp', '<cmd>bp<CR>')
 vim.keymap.set('n', '<Space>bn', '<cmd>bn<CR>')
 vim.keymap.set('n', '<Space>bl', '<cmd>b#<CR>')
 vim.keymap.set('n', '<Space>rr', '<cmd>source ~/.config/nvim/init.lua<CR>', {})
-vim.cmd.colorscheme('tokyonight')
+vim.cmd.colorscheme('vscode')
 
 vim.keymap.set('n', '<Space>lD', vim.lsp.buf.hover, {buffer = bufnr})
 vim.keymap.set('n', '<Space>lr', vim.lsp.buf.references, {buffer = bufnr})
@@ -434,3 +436,45 @@ vim.keymap.set('n', '<Space>tn', '<cmd>FloatermNext<CR>', {})
 vim.keymap.set('t', '<C-Space>tn', '<cmd>FloatermNext<CR>', {})
 vim.keymap.set('n', '<Space>tt', '<cmd>FloatermToggle<CR>', {})
 vim.keymap.set('t', '<C-Space>tt', '<cmd>FloatermToggle<CR>', {})
+
+---
+-- File Browser
+--
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- OR setup with some options
+local function my_on_attach(bufnr)
+  local api = require "nvim-tree.api"
+
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- default mappings
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- custom mappings
+  vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent,        opts('Up'))
+  vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
+end
+
+-- pass to setup along with your other options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  on_attach = my_on_attach,
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+vim.keymap.set('n', '<space>fb', '<cmd>NvimTreeToggle<cr>', {})
