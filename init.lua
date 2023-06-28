@@ -58,7 +58,8 @@ lazy.setup({
 	{'romgrk/barbar.nvim'},
 	{'numToStr/Comment.nvim'},
 	{"ahmedkhalf/project.nvim"},
-	{'nvim-treesitter/nvim-treesitter'}
+	{'nvim-treesitter/nvim-treesitter'},
+	{'voldikss/vim-floaterm'}
 })
 
 require('lualine').setup{
@@ -419,3 +420,17 @@ require("project_nvim").setup {
   -- telescope
   datapath = vim.fn.stdpath("data"),
 }
+
+
+
+---
+-- Terminal
+--
+vim.keymap.set('n', '<Space>tc', '<cmd>FloatermNew<CR>', {})
+vim.keymap.set('t', '<C-Space>tc', '<cmd>FloatermNew<CR>', {})
+vim.keymap.set('n', '<Space>tp', '<cmd>FloatermPrev<CR>', {})
+vim.keymap.set('t', '<C-Space>tp', '<cmd>FloatermPrev<CR>', {})
+vim.keymap.set('n', '<Space>tn', '<cmd>FloatermNext<CR>', {})
+vim.keymap.set('t', '<C-Space>tn', '<cmd>FloatermNext<CR>', {})
+vim.keymap.set('n', '<Space>tt', '<cmd>FloatermToggle<CR>', {})
+vim.keymap.set('t', '<C-Space>tt', '<cmd>FloatermToggle<CR>', {})
