@@ -272,6 +272,7 @@ vim.keymap.set('n', '<Space>lD', vim.lsp.buf.hover, {buffer = bufnr})
 -- LSP
 --
 require'lspconfig'.pyright.setup{}
+require'lspconfig'.tsserver.setup{}
 local lspconfig = require('lspconfig')
 lspconfig.tsserver.setup {}
 lspconfig.rust_analyzer.setup {
