@@ -276,12 +276,30 @@ require'lspconfig'.pyright.setup{}
 require'lspconfig'.tsserver.setup{}
 local lspconfig = require('lspconfig')
 lspconfig.tsserver.setup {}
-lspconfig.rust_analyzer.setup {
-  -- Server-specific settings. See `:help lspconfig-setup`
-  settings = {
-    ['rust-analyzer'] = {},
-  },
-}
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+end
+lspconfig.rust_analyzer.setup({
+    on_attach=on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
 require'lspconfig'.lua_ls.setup {
   settings = {
     Lua = {
