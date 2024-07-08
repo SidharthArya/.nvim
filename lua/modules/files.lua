@@ -100,4 +100,14 @@ return {
       require("nvim-tree").setup(opts)
     end,
   },
+  { 
+    "luukvbaal/nnn.nvim",
+  keys = {
+    { "<Space>nn", "<cmd>NnnExplorer<cr>", desc = "Find Files in NNN" }
+    },
+    config = function()
+    require("nnn").setup()
+    end
+
+  }
 }
