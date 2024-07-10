@@ -15,7 +15,7 @@ map("n", "<Space>fn", function()
 return ":e " .. vim.fn.expand('%:h')
 end, { desc = "new file in same directory", expr = true })
 
-map("n", "<Space>dn", function()
+map("n", "<Space>fD", function()
 return ":!mkdir " .. vim.fn.expand('%:h')
 end, { desc = "new directory in same folder", expr = true })
 
