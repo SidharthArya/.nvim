@@ -14,7 +14,12 @@ return {
       { "<Space>dn", function() dap.step_into() end,          desc = "DAP Step Into" },
       { "<Space>dS", function() dap.step_over() end,          desc = "DAP Step Over" },
       { "<Space>dt", function() dap.terminate() end,          desc = "DAP Step Over" },
-      { "<Space>dr", function() dap.repl.open() end,          desc = "DAP REPL" }
+      { "<Space>dr", function() dap.repl.open() end,          desc = "DAP REPL" },
+      { "<Space>dD", "<cmd>FzfLua dap_breakpoints<CR>",          desc = "DAP REPL" },
+      { "<Space>dC", "<cmd>FzfLua dap_commands<CR>",          desc = "DAP REPL" },
+      { "<Space>dv", "<cmd>FzfLua dap_variables<CR>",          desc = "DAP REPL" },
+      { "<Space>df", "<cmd>FzfLua dap_frames<CR>",          desc = "DAP REPL" },
+      { "<Space>dR", "<cmd>FzfLua dap_configurations<CR>",          desc = "DAP REPL" },
     },
     config = function()
       dap = require("dap")
