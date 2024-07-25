@@ -111,7 +111,7 @@ return {
       { "<Space>ff", function() require('fzf-lua').files({ resume = true }) end,  desc = "Find Files" },
       { "<Space>bb", function() require('fzf-lua').buffers({ resume = true }) end, desc = "Find Buffers" },
       { "<Space>ch", "<cmd>FzfLua command_history<CR>", desc = "Find Buffers" },
-      { "<Space>fg", "<cmd>FzfLua live_grep<cr>",                 desc = "Live Grep" },
+      { "<Space>fg", function() require('fzf-lua').live_grep({ resume = true }) end, desc = "Find Buffers" },
       { "<Space>fo", "<cmd>FzfLua oldfiles<CR>",                  desc = "telescope find oldfiles" },
       { "<Space>fh", "<cmd>FzfLua help_tags<CR>",                 desc = "telescope help page" },
       { "<Space>cm", "<cmd>FzfLua git_commits<CR>",               desc = "telescope git commits" },

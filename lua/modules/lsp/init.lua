@@ -204,7 +204,7 @@ navbuddy.setup {
       -- export on_attach & capabilities
       LSPCONFIG.on_attach = function(client, bufnr)
         if client.server_capabilities.documentSymbolProvider then
-          require('nvim-naivic').attach(client, bufnr)
+          -- require('nvim-naivic').attach(client, bufnr)
           require('nvim-navbuddy').attach(client, bufnr)
         end
         local function opts(desc)

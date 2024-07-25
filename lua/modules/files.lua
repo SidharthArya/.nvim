@@ -19,6 +19,9 @@ return {
 {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+  keys = {
+    { "<F1>", "<cmd>NvimTreeToggle<cr>", desc = "Find Files Nvim Tree" }
+    },
     opts = function()
 		return {
 			filters = {
@@ -103,7 +106,8 @@ return {
   { 
     "luukvbaal/nnn.nvim",
   keys = {
-    { "<Space>nn", "<cmd>NnnExplorer<cr>", desc = "Find Files in NNN" }
+    { "<Space>nn", "<cmd>NnnExplorer<cr>", desc = "Find Files in NNN" },
+    -- { "<F1>", "<cmd>NnnExplorer<cr>", desc = "Find Files in NNN" }
     },
     config = function()
     require("nnn").setup()

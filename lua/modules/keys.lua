@@ -9,6 +9,7 @@ keymapper('n', '<Space>bn', ':bnext<cr>', options)
 keymapper('n', '<Space>bp', ':bprev<cr>', options)
 keymapper('n', '<Space>bl', ':b#<cr>', options)
 keymapper('n', '<Space>bd', ':bdel<cr>', options)
+keymapper('i', '<C-s>', '<cmd>w<cr>', options)
 
 
 map("n", "<Space>fn", function()
