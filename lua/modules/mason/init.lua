@@ -64,52 +64,55 @@ M.install_all = function(data)
 end
 
 return {
-    {
-        "williamboman/mason.nvim",
-        cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
-        opts = function()
-          return {
-            PATH = "skip",
-          
-            ui = {
-              icons = {
-                package_pending = " ",
-                package_installed = "󰄳 ",
-                package_uninstalled = " 󰚌",
-              },
-          
-              keymaps = {
-                toggle_server_expand = "<CR>",
-                install_server = "i",
-                update_server = "u",
-                check_server_version = "c",
-                update_all_servers = "U",
-                check_outdated_servers = "C",
-                uninstall_server = "X",
-                cancel_installation = "<C-c>",
-              },
-            },
-          
-            max_concurrent_installers = 10,
-          }
-        end,
-        config = function(_, opts)
-          require("mason").setup(opts)
+  {
+    "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+    keys = {
+      { "<Space>pm", "<cmd>Mason<CR>", { desc = "Mason" } }
+    },
+    opts = function()
+      return {
+        PATH = "skip",
+
+        ui = {
+          icons = {
+            package_pending = " ",
+            package_installed = "󰄳 ",
+            package_uninstalled = " 󰚌",
+          },
+
+          keymaps = {
+            toggle_server_expand = "<CR>",
+            install_server = "i",
+            update_server = "u",
+            check_server_version = "c",
+            update_all_servers = "U",
+            check_outdated_servers = "C",
+            uninstall_server = "X",
+            cancel_installation = "<C-c>",
+          },
+        },
+
+        max_concurrent_installers = 10,
+      }
+    end,
+    config = function(_, opts)
+      require("mason").setup(opts)
 
       vim.api.nvim_create_user_command("MasonInstallAll", function()
         M.install_all(opts.ensure_installed)
       end, {})
-    
-    
-        end,
-      },
-      {"williamboman/mason-lspconfig.nvim",
-      config = function ()
-    require('mason-lspconfig').setup()
-    require('mason-lspconfig').setup_handlers({
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require('mason-lspconfig').setup()
+      require('mason-lspconfig').setup_handlers({
         function(server)
           lspconfig[server].setup({})
-        end,})
-      end
-    }
+        end, })
+    end
+  }
 }
+
