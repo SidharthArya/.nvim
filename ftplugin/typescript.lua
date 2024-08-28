@@ -9,5 +9,10 @@ if type(lspconfig) == 'table' then
   capabilities = LSPCONFIG.capabilities,
   on_init = LSPCONFIG.on_init,
 })
+  lspconfig.tsserver.setup({
+  on_attach = LSPCONFIG.on_attach,
+  capabilities = LSPCONFIG.capabilities,
+  on_init = LSPCONFIG.on_init,
+})
 end
 print('Typescript File')
