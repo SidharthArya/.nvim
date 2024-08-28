@@ -7,6 +7,8 @@ return {
       vim.opt.background = 'dark'
       vim.opt.termguicolors = true
       vim.cmd('colorscheme vscode')
+
+vim.cmd('hi! Normal ctermbg=NONE guibg=NONE')
     end
   },
 
